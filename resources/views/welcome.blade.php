@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Dagou Test
+                    Dagou Test 2
                 </div>
 
                 <div class="links">
