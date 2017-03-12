@@ -25,7 +25,10 @@ def getBsObjByWebdriver(url):
 	except HTTPError as e:
 		return None
 	try:
-		driver = webdriver.PhantomJS(executable_path='./phantomjs.exe')
+		#local
+		# driver = webdriver.PhantomJS(executable_path='./phantomjs.exe')
+		#product
+		driver = webdriver.PhantomJS(executable_path='/opt/lampp/htdocs/dagou/phantomjs')
 		driver.get(url)
 		time.sleep(3)
 		pageSource = driver.page_source
