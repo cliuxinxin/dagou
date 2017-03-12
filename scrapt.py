@@ -1,7 +1,9 @@
 from urllib.request import urlopen
 from urllib.error import HTTPError
+from selenium import webdriver
 from bs4 import BeautifulSoup
 import pymysql
+import time
 import re
 
 
@@ -17,6 +19,22 @@ def getBsObj(url):
 		return None
 	return bsObj
 
+def getBsObjByWebdriver(url):
+	try:
+		html = urlopen(url)
+	except HTTPError as e:
+		return None
+	try:
+		driver = webdriver.PhantomJS(executable_path='./phantomjs.exe')
+		driver.get(url)
+		time.sleep(3)
+		pageSource = driver.page_source
+		bsObj = BeautifulSoup(pageSource, "html.parser")
+		driver.close()
+	except AttributeError as e:
+		return None
+	return bsObj
+
 #2ed. Parse data base on the target info
 
 def parseDataTest(bsObj):
@@ -25,26 +43,26 @@ def parseDataTest(bsObj):
 	for item in itemList:
 		record = {
 			"name":item.contents[2].text,
-			"url":item.contents[2].attrs['href'],
+			"url":item.contents[2].attrs['href'].replace("..", "http://www.cdggzy.com/app1"),
 			"city":'成都'+item.contents[1].text,
 			"start_date":item.contents[0].text,
 		}
 		records.append(record)
-	print(bsObj)
+	print(records)
 
 
 
 
 def parseData(bsObj):
-	itemList = bsObj.find("div", {"class":"ui bidlist"}).find_all("span", {"class":"line"})
+	itemList = bsObj.find("ul", {"class":"qy_list"}).find_all("li")
 	records = []
 	for item in itemList:
 		record = {
-			"name":item.contents[0].attrs['title'],
-			"url":'http://www.scbid.com'+item.contents[0].attrs['href'],
-			"city":item.contents[1].text,
-			"start_date":item.contents[2].attrs['title'],
-			"end_date":item.contents[3].attrs['title']
+			"name":item.contents[2].text,
+			"url":item.contents[2].attrs['href'].replace("..", "http://www.cdggzy.com/app1"),
+			"city":'成都'+item.contents[1].text,
+			"start_date":item.contents[0].text,
+			"end_date":""
 		}
 		records.append(record)
 	return records
@@ -57,7 +75,7 @@ def storeData(records):
 	cur = conn.cursor()
 	cur.execute("USE dagou")
 
-	cur.executemany("INSERT INTO items (name,url,city,start_date,end_date) VALUES (%(name)s,%(url)s,%(city)s,%(start_date)s,%(start_date)s)", records)
+	cur.executemany("INSERT INTO items (name,url,city,start_date,end_date) VALUES (%(name)s,%(url)s,%(city)s,%(start_date)s,%(end_date)s)", records)
 	cur.connection.commit()
 
 	cur.close()
@@ -66,12 +84,12 @@ def storeData(records):
 #4th. Repeat if neccsess
 
 
-bsObj = getBsObj("http://www.cdggzy.com/app1/two/jyxx_zbggmore.jsp")
+bsObj = getBsObjByWebdriver("http://www.cdggzy.com/app1/two/jyxx_zbggmore.jsp")
 
 if bsObj == None:
 	print("Title could not be found")
 else:
-	parseDataTest(bsObj)
-	# records = parseData(bsObj)
+	# parseDataTest(bsObj)
+	records = parseData(bsObj)
 	# print(records)
-	# storeData(records)
+	storeData(records)
