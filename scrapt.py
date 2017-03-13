@@ -78,7 +78,7 @@ def storeData(records):
 	cur = conn.cursor()
 	cur.execute("USE dagou")
 
-	cur.executemany("INSERT INTO items (name,url,city,start_date,end_date) VALUES (%(name)s,%(url)s,%(city)s,%(start_date)s,%(end_date)s)", records)
+	cur.executemany("INSERT IGNORE INTO items (name,url,city,start_date,end_date) VALUES (%(name)s,%(url)s,%(city)s,%(start_date)s,%(end_date)s)", records)
 	cur.connection.commit()
 
 	cur.close()
