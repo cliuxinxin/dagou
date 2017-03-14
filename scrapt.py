@@ -109,14 +109,14 @@ def parseMianyang3(bsObj):
 	records = []
 	for item in itemList:
 		record = {
-			"name":item.contents[3],
-			"url":item.contents[4],
+			"name":item.contents[6].text,
+			"url":"http://egpmall.my.gov.cn"+item.contents[6].attrs['href'],
 			"city":"绵阳竞价",
 			"start_date":item.contents[0].text,
 			"end_date":""
 		}
 		records.append(record)
-	print(records)
+	return records
 
 
 
@@ -150,9 +150,9 @@ def scrape(city):
 	if bsObj == None:
 		print("Title could not be found")
 	else:
-		# records = eval(city['method'] + '(bsObj)')
-		eval(city['method'] + '(bsObj)')
-		# print(storeData(records))
+		# eval(city['method'] + '(bsObj)')
+		records = eval(city['method'] + '(bsObj)')
+		print(storeData(records))
 
 
 
@@ -182,8 +182,8 @@ mianyang3 = {
 	'method':'parseMianyang3'
 }
 
-# scrape(mianyang)
-# scrape(mianyang2)
+scrape(mianyang)
+scrape(mianyang2)
 scrape(mianyang3)
-# scrape(chengdu)
+scrape(chengdu)
 
