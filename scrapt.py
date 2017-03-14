@@ -282,6 +282,85 @@ meishan2 = {
 	'method':'parseMeishan2'
 }
 
+shuiling = {
+	'url':'http://www.snjsjy.com/Content/Cloud/29_1_20_0',
+	'web':0,
+	'method':'parseShuiling'
+}
+
+shuiling2 = {
+	'url':'http://www.snjsjy.com/Content/Cloud/265,268_1_20_0',
+	'web':0,
+	'method':'parseShuiling'
+}
+
+nanchong = {
+	'url':'http://www.scncggzy.com.cn/TPFront/front_zfcg/071002/?categoryno=0710&category=071002',
+	'web':0,
+	'method':'parseShuiling'
+}
+
+nanchong2 = {
+	'url':'http://www.scncggzy.com.cn/TPFront/front_gcjs/072001/?categoryno=0720&category=072001',
+	'web':0,
+	'method':'parseShuiling'
+}
+
+guangyuan = {
+	'url':'http://www.gyggzy.gov.cn/ceinwz/WebInfo_List.aspx?jsgc=0100000&PubDateSort=0&ShowPre=0&newsid=100&FromUrl=jsgc',
+	'web':0,
+	'method':'parseShuiling'
+}
+
+guangyuan2 = {
+	'url':'http://www.gyggzy.gov.cn/ceinwz/WebInfo_List.aspx?zfcg=0000000&PubDateSort=0&ShowPre=0&newsid=200&FromUrl=zfcg',
+	'web':0,
+	'method':'parseShuiling'
+}
+
+bazhong = {
+	'url':'http://220.166.21.50:82/Category/More?id=643',
+	'web':0,
+	'method':'parseShuiling'
+}
+
+bazhong2 = {
+	'url':'http://220.166.21.50:82/Category/More?id=646',
+	'web':0,
+	'method':'parseShuiling'
+}
+
+dazhou = {
+	'url':'http://www.dzggzy.cn/dzsggzy/jyxx/025002/025002001/',
+	'web':0,
+	'method':'parseShuiling'
+}
+
+luzhou = {
+	'url':'http://ggzy.luzhou.gov.cn/ceinwz/WebInfo_List.aspx?newsid=0&jsgc=0100000000&zfcg=&tdjy=&cqjy=&PubDateSort=0&ShowPre=0&CbsZgys=0&zbfs=0&qxxx=0&showqxname=0&NewsShowPre=1&wsjj=0&showCgr=0&ShowOverDate=0&showdate=1&FromUrl=jsgc',
+	'web':0,
+	'method':'parseShuiling'
+}
+
+luzhou2 = {
+	'url':'http://cg.luzhou.gov.cn/ceinwz/WebInfo_List.aspx?newsid=5001,5006,5011,5016,5021,5026,5031,5036&jsgc=&zfcg=01000000&tdjy=&cqjy=&PubDateSort=0&ShowPre=0&CbsZgys=0&zbfs=0&qxxx=0&showqxname=1&NewsShowPre=1&wsjj=2&showCgr=0&ShowOverDate=0&showdate=1&FromUrl=zfcg',
+	'web':0,
+	'method':'parseShuiling'
+}
+
+yibin = {
+	'url':'http://www.ybsggzyjyxxw.com/Jyweb/JYXTXiangMuXinXiList.aspx?type=%E5%BB%BA%E8%AE%BE%E5%B7%A5%E7%A8%8B&subType=130',
+	'web':0,
+	'method':'parseShuiling'
+}
+
+yibin2 = {
+	'url':'http://www.ybsggzyjyxxw.com/ZFCG/Default_ZFCG.aspx',
+	'web':0,
+	'method':'parseShuiling'
+}
+
+
 scrape(mianyang)
 scrape(mianyang2)
 scrape(mianyang3)
