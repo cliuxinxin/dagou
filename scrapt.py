@@ -282,14 +282,14 @@ meishan2 = {
 	'method':'parseMeishan2'
 }
 
-# scrape(mianyang)
-# scrape(mianyang2)
-# scrape(mianyang3)
-# scrape(chengdu)
-# scrape(ziyang)
-# scrape(yaan)
-# scrape(yaan2)
-# scrape(meishan)
+scrape(mianyang)
+scrape(mianyang2)
+scrape(mianyang3)
+scrape(chengdu)
+scrape(ziyang)
+scrape(yaan)
+scrape(yaan2)
+scrape(meishan)
 scrape(meishan2)
 
 
