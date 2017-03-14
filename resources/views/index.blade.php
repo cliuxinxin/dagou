@@ -20,6 +20,7 @@
                         @endforeach
                     </table>
         </div>
+    {{ $items->links() }}
     </div>
 </div>
 @endsection
