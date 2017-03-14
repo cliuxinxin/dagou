@@ -104,9 +104,23 @@ def parseChengdu(bsObj):
 		records.append(record)
 	return records
 
+def parseMianyang3(bsObj):
+	itemList = bsObj.find("div", {"class":"box-text-list"}).find_all("li")
+	records = []
+	for item in itemList:
+		record = {
+			"name":item.contents[3],
+			"url":item.contents[4],
+			"city":"绵阳竞价",
+			"start_date":item.contents[0].text,
+			"end_date":""
+		}
+		records.append(record)
+	print(records)
 
 
-#3rd. Store data
+
+#3rd. Store datas
 
 def storeData(records):
 	conn = pymysql.connect(host='127.0.0.1', user='dagou', passwd='v4Qolwc1sMLIXmYO', db='dagou',charset="utf8")
@@ -131,13 +145,14 @@ def storeData(records):
 # bsObj = getBsObjByWebdriver("http://v2.dyggzy.com/?id=678")
 
 def scrape(city):
-	bsObj = getBsObjData(mianyang)
+	bsObj = getBsObjData(city)
 
 	if bsObj == None:
 		print("Title could not be found")
 	else:
-		records = eval(city['method'] + '(bsObj)')
-		print(storeData(records))
+		# records = eval(city['method'] + '(bsObj)')
+		eval(city['method'] + '(bsObj)')
+		# print(storeData(records))
 
 
 
@@ -155,5 +170,20 @@ chengdu = {
 	'method':'parseChengdu'
 }
 
-scrape(mianyang)
+mianyang2 = {
+	'url':'http://caigou.my.gov.cn/ceinwz/WebInfo_List.aspx?newsid=601&jsgc=&zfcg=0100000&tdjy=&cqjy=&PubDateSort=0&ShowPre=1&CbsZgys=0&zbfs=0&qxxx=0&showqxname=0&NewsShowPre=1&wsjj=0&showCgr=0&ShowOverDate=0&showdate=1&FromUrl=nourl',
+	'web': 0,
+	'method':'parseMianyang'
+}
+
+mianyang3 = {
+	'url':'http://egpmall.my.gov.cn/Content/247_1',
+	'web': 0,
+	'method':'parseMianyang3'
+}
+
+# scrape(mianyang)
+# scrape(mianyang2)
+scrape(mianyang3)
+# scrape(chengdu)
 
