@@ -118,6 +118,76 @@ def parseMianyang3(bsObj):
 		records.append(record)
 	return records
 
+def parseZiyang(bsObj):
+	itemList = bsObj.find("div", {"class":"box-text-list"}).find_all("li")
+	records = []
+	for item in itemList:
+		record = {
+			"name":item.contents[6].text,
+			"url":"http://www.zyjyw.cn"+item.contents[6].attrs['href'],
+			"city":"资阳",
+			"start_date":item.contents[0].text,
+			"end_date":""
+		}
+		records.append(record)
+	return records
+
+def parseYaan(bsObj):
+	itemList = bsObj.find("div", {"class":"new_news_content"}).find_all("li")
+	records = []
+	for item in itemList:
+		record = {
+			"name":item.contents[1].contents[0].text,
+			"url":item.contents[1].attrs['href'],
+			"city":"雅安",
+			"start_date":item.contents[4].text,
+			"end_date":''
+		}
+		records.append(record)
+	return records
+
+def parseYaan2(bsObj):
+	itemList = bsObj.find("div", {"class":"new_news_content"}).find_all("li")
+	records = []
+	for item in itemList:
+		record = {
+			"name":item.contents[1].attrs["title"],
+			"url":"http://ggzy.yazw.gov.cn:8007"+item.contents[1].attrs["href"],
+			"city":"雅安",
+			"start_date":item.contents[5].text,
+			"end_date":""
+		}
+		records.append(record)
+	return records
+
+def parseMeishan(bsObj):
+	itemList = bsObj.find("table", {"width":"99%"}).find_all("tr",{"height":"22"})
+	records = []
+	for item in itemList:
+		record = {
+			"name":item.contents[4].contents[0].attrs["title"],
+			"url":"http://www.msggzy.org.cn"+item.contents[4].contents[0].attrs["href"],
+			"city":"眉山",
+			"start_date":item.contents[6].text,
+			"end_date":item.contents[8].text
+		}
+		records.append(record)
+	return records
+
+def parseMeishan2(bsObj):
+	itemList = bsObj.find("table", {"id":"MoreInfoList1_DataGrid1"}).find_all("tr")
+	records = []
+	for item in itemList:
+		record = {
+			"name":item.contents[2].a.attrs['title'],
+			"url":"http://www.msggzy.org.cn"+item.contents[2].a.attrs['href'],
+			"city":"眉山",
+			"start_date":item.contents[3].text.strip().replace("\r\n", ""),
+			"end_date":''
+		}
+		records.append(record)
+	return records
+
 
 
 #3rd. Store datas
@@ -182,8 +252,47 @@ mianyang3 = {
 	'method':'parseMianyang3'
 }
 
-scrape(mianyang)
-scrape(mianyang2)
-scrape(mianyang3)
-scrape(chengdu)
+ziyang = {
+	'url':'http://www.zyjyw.cn/Content/603_1',
+	'web': 0,
+	'method':'parseZiyang'
+}
+
+yaan = {
+	'url':'http://ggzy.yazw.gov.cn:8007/JyWeb/XXGK/JYXYZFCGXXFBList?SubType=2&SubType2=2010&Type=%E9%87%87%E8%B4%AD%E4%BF%A1%E6%81%AF',
+	'web': 0,
+	'method':'parseYaan'
+}
+
+yaan2 = {
+	'url':'http://ggzy.yazw.gov.cn:8007/JyWeb/TradeInfo/JingJiaXinXiList?SubType=50000&SubType2=6010&Type=%E7%AB%9E%E4%BB%B7%E4%BF%A1%E6%81%AF',
+	'web': 0,
+	'method':'parseYaan2'
+}
+
+meishan = {
+	'url':'http://www.msggzy.org.cn/msweb/gcjs/003002/',
+	'web':0,
+	'method':'parseMeishan'
+}
+
+meishan2 = {
+	'url':'http://www.msggzy.org.cn/msweb//zfcg/005003/MoreInfo.aspx?CategoryNum=005003',
+	'web':0,
+	'method':'parseMeishan2'
+}
+
+# scrape(mianyang)
+# scrape(mianyang2)
+# scrape(mianyang3)
+# scrape(chengdu)
+# scrape(ziyang)
+# scrape(yaan)
+# scrape(yaan2)
+# scrape(meishan)
+scrape(meishan2)
+
+
+
+
 
