@@ -7,6 +7,7 @@ import time
 import re
 
 
+
 #1st. Get html though domain
 
 def getBsObj(url):
@@ -188,6 +189,92 @@ def parseMeishan2(bsObj):
 		records.append(record)
 	return records
 
+def parseDeyang(bsObj):
+	itemList = bsObj.find("div", {"id":"ArticleBox"}).find_all("li")
+	records = []
+	for item in itemList:
+		record = {
+			"name":item.contents[2].attrs['title'],
+			"url":"http://v2.dyggzy.com"+item.contents[2].attrs['href'],
+			"city":"德阳",
+			"start_date":item.contents[0].text,
+			"end_date":''
+		}
+		records.append(record)
+	return records	
+
+def parseShuiling(bsObj):
+	itemList = bsObj.find("div", {"class":"box-text-list"}).find_all("li")
+	records = []
+	for item in itemList:
+		record = {
+			"name":item.contents[7].text,
+			"url":item.contents[7].attrs['href'],
+			"city":'遂宁',
+			"start_date":item.contents[1].text,
+			"end_date":''
+		}
+		records.append(record)
+	return records	
+
+def parseNanchong(bsObj):
+	itemList = bsObj.find_all("li",{'class':'list-li'})
+	records = []
+	for item in itemList:
+		record = {
+			"name":item.contents[1].contents[0].text,
+			"url":"http://www.scncggzy.com.cn"+item.contents[1].attrs['href'],
+			"city":'南充',
+			"start_date":item.contents[1].contents[1].text,
+			"end_date":''
+		}
+		records.append(record)
+	return records
+
+
+def parseGuangyuan(bsObj):
+	itemList = bsObj.find('table',{'class':'myGVClass'}).find_all("tr",{'class':'myGVAltRow'})
+	records = []
+	for item in itemList:
+		record = {
+			"name":item.contents[2].a.text,
+			"url":"http://www.gyggzy.gov.cn/ceinwz/"+item.contents[2].a.attrs['href'],
+			"city":'广元',
+			"start_date":'2000-1-1',
+			"end_date":''
+		}
+		records.append(record)
+	return records
+
+
+def parseBazhong(bsObj):
+	itemList = bsObj.find('div',{'id':'listCon'}).find_all("li")
+	records = []
+	for item in itemList:
+		record = {
+			"name":item.contents[2].attrs['title'],
+			"url":"http://220.166.21.50:82"+item.contents[2].attrs['href'],
+			"city":'巴中',
+			"start_date":item.contents[0].text,
+			"end_date":''
+		}
+		records.append(record)
+	return records
+
+def parseDazhou(bsObj):
+	itemList = bsObj.find_all("tr",{'class':'trfont'})
+	records = []
+	for item in itemList:
+		record = {
+			"name":item.contents[3].a.attrs['title'],
+			"url":"http://www.dzggzy.cn"+item.contents[3].a.attrs['href'],
+			"city":'达州',
+			"start_date":item.contents[5].text.replace("[","").replace("]",""),
+			"end_date":''
+		}
+		records.append(record)
+	return records
+
 
 
 #3rd. Store datas
@@ -220,9 +307,20 @@ def scrape(city):
 	if bsObj == None:
 		print("Title could not be found")
 	else:
-		# eval(city['method'] + '(bsObj)')
 		records = eval(city['method'] + '(bsObj)')
 		print(storeData(records))
+
+def scrapeTest(city):
+	bsObj = getBsObjData(city)
+
+	if bsObj == None:
+		print("Title could not be found")
+	else:
+		records=eval(city['method'] + '(bsObj)')
+		for record in records:
+			for key,content in record.items():
+				print('{}:{}'.format(key,content))
+
 
 
 
@@ -282,6 +380,12 @@ meishan2 = {
 	'method':'parseMeishan2'
 }
 
+deyang = {
+	'url':'http://v2.dyggzy.com/?id=678',
+	'web':1,
+	'method':'parseDeyang'
+}
+
 shuiling = {
 	'url':'http://www.snjsjy.com/Content/Cloud/29_1_20_0',
 	'web':0,
@@ -297,43 +401,43 @@ shuiling2 = {
 nanchong = {
 	'url':'http://www.scncggzy.com.cn/TPFront/front_zfcg/071002/?categoryno=0710&category=071002',
 	'web':0,
-	'method':'parseShuiling'
+	'method':'parseNanchong'
 }
 
 nanchong2 = {
 	'url':'http://www.scncggzy.com.cn/TPFront/front_gcjs/072001/?categoryno=0720&category=072001',
 	'web':0,
-	'method':'parseShuiling'
+	'method':'parseNanchong'
 }
 
 guangyuan = {
 	'url':'http://www.gyggzy.gov.cn/ceinwz/WebInfo_List.aspx?jsgc=0100000&PubDateSort=0&ShowPre=0&newsid=100&FromUrl=jsgc',
 	'web':0,
-	'method':'parseShuiling'
+	'method':'parseGuangyuan'
 }
 
-guangyuan2 = {
-	'url':'http://www.gyggzy.gov.cn/ceinwz/WebInfo_List.aspx?zfcg=0000000&PubDateSort=0&ShowPre=0&newsid=200&FromUrl=zfcg',
-	'web':0,
-	'method':'parseShuiling'
-}
+# guangyuan2 = {
+# 	'url':'http://www.gyggzy.gov.cn/ceinwz/WebInfo_List.aspx?zfcg=0000000&PubDateSort=0&ShowPre=0&newsid=200&FromUrl=zfcg',
+# 	'web':0,
+# 	'method':'parseGuangyuan'
+# }
 
 bazhong = {
 	'url':'http://220.166.21.50:82/Category/More?id=643',
-	'web':0,
-	'method':'parseShuiling'
+	'web':1,
+	'method':'parseBazhong'
 }
 
 bazhong2 = {
 	'url':'http://220.166.21.50:82/Category/More?id=646',
-	'web':0,
-	'method':'parseShuiling'
+	'web':1,
+	'method':'parseBazhong'
 }
 
 dazhou = {
 	'url':'http://www.dzggzy.cn/dzsggzy/jyxx/025002/025002001/',
 	'web':0,
-	'method':'parseShuiling'
+	'method':'parseDazhou'
 }
 
 luzhou = {
@@ -361,6 +465,7 @@ yibin2 = {
 }
 
 
+
 scrape(mianyang)
 scrape(mianyang2)
 scrape(mianyang3)
@@ -370,6 +475,25 @@ scrape(yaan)
 scrape(yaan2)
 scrape(meishan)
 scrape(meishan2)
+scrape(deyang)
+scrape(shuiling)
+scrape(shuiling2)
+scrape(nanchong)
+scrape(nanchong2)
+scrape(guangyuan)
+scrape(bazhong)
+scrape(bazhong2)
+# 乱码
+# scrapeTest(dazhou)
+
+
+
+
+
+
+
+
+
 
 
 
