@@ -548,7 +548,7 @@ scrape(luzhou)
 scrape(luzhou2)
 scrape(sichuang)
 scrape(sichuang2)
-web
+#web
 scrape(bazhong)
 scrape(bazhong2)
 scrape(deyang)
