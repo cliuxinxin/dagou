@@ -349,11 +349,55 @@ def storeData(records):
 
 #4th. Repeat if neccsess
 
+#5th. Find the data
+def findData(condition):
+	conn = pymysql.connect(host='127.0.0.1', user='dagou', passwd='v4Qolwc1sMLIXmYO', db='dagou',charset="utf8")
 
-# bsObj = getBsObjByWebdriver("")
+	cur = conn.cursor()
+	cur.execute("USE dagou")
 
-# bsObj = getBsObjByWebdriver("http://v2.dyggzy.com/?id=678")
+	cur.execute("select *  from items where " + condition)
+	cur.connection.commit()
+	results = cur.fetchall()
 
+	cur.close()
+	conn.close()
+
+	return results
+
+#6th. Update the data
+def updateData(data,column):
+	conn = pymysql.connect(host='127.0.0.1', user='dagou', passwd='v4Qolwc1sMLIXmYO', db='dagou',charset="utf8")
+
+	cur = conn.cursor()
+	cur.execute("USE dagou")
+
+	cur.executemany("update items set start_date = %("+column+")s where id = %(id)s",data)
+	cur.connection.commit()
+
+	cur.close()
+	conn.close()
+
+#7th. Process the data
+def updateGuangyuan():
+	condition = "city='广元' and start_date='2000-1-1'"
+
+	results = findData(condition)
+
+	data =[]
+
+	for result in results:
+		bsObj = getBsObj(result[2])
+		item ={
+			"id":result[0],
+			"start_date":bsObj.find("span",{"id":"lblWriteDate"}).text
+		}
+		data.append(item)
+
+	updateData(data,"start_date")
+
+
+# Scrape Data
 def scrape(city):
 	bsObj = getBsObjData(city)
 
@@ -373,8 +417,6 @@ def scrapeTest(city):
 		for record in records:
 			for key,content in record.items():
 				print('{}:{}'.format(key,content))
-
-
 
 
 
@@ -531,6 +573,12 @@ sichuang2 = {
 
 
 
+
+
+
+
+
+
 scrape(mianyang)
 scrape(mianyang2)
 scrape(mianyang3)
@@ -557,6 +605,7 @@ scrape(chengdu)
 # scrapeTest(yibin)
 # 乱码
 # scrapeTest(dazhou)
+updateGuangyuan()
 
 
 
