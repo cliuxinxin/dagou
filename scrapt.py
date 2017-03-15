@@ -6,7 +6,7 @@ import pymysql
 import time
 import re
 
-
+###############################################################################
 #1st. Get html though domain
 
 def getBsObj(url):
@@ -44,37 +44,8 @@ def getBsObjData(city):
 		return getBsObjByWebdriver(city['url'])
 	return getBsObj(city['url'])
 
+##################################################################################################################
 #2ed. Parse data base on the target info
-
-def parseDataTest(bsObj):
-	itemList = bsObj.find("table",{"class":"myGVClass"}).find_all("tr",{"class":"myGVAltRow"})
-	records = []
-	for item in itemList:
-		record = {
-			"name":item.contents[2].text.replace("\n", ""),
-			"url":'http://caigou.my.gov.cn/ceinwz/'+item.contents[2].a.attrs["href"],
-			"city":'绵阳',
-			"start_date":item.contents[3].text.replace("\n", "").replace("[正在进行]", ""),
-		}
-		records.append(record)
-	print(records)
-
-
-
-
-def parseData(bsObj):
-	itemList = bsObj.find("ul", {"class":"qy_list"}).find_all("li")
-	records = []
-	for item in itemList:
-		record = {
-			"name":item.contents[2].text,
-			"url":item.contents[2].attrs['href'].replace("..", "http://www.cdggzy.com/app1"),
-			"city":'成都'+item.contents[1].text,
-			"start_date":item.contents[0].text,
-			"end_date":""
-		}
-		records.append(record)
-	return records
 
 def parseMianyang(bsObj):
 	itemList = bsObj.find("table",{"class":"myGVClass"}).find_all("tr",{"class":"myGVAltRow"})
@@ -330,7 +301,8 @@ def parseSichuang(bsObj):
 		records.append(record)
 	return records
 
-#3rd. Store datas
+############################################################################################
+#3rd. Store data
 
 def storeData(records):
 	conn = pymysql.connect(host='127.0.0.1', user='dagou', passwd='v4Qolwc1sMLIXmYO', db='dagou',charset="utf8")
@@ -362,8 +334,10 @@ def insertOrUpdateData(data):
 
 	return result
 
+####################################################################################################
 #4th. Repeat if neccsess
 
+#####################################################################################################
 #5th. Find the data
 def findData(condition):
 	conn = pymysql.connect(host='127.0.0.1', user='dagou', passwd='v4Qolwc1sMLIXmYO', db='dagou',charset="utf8")
@@ -380,6 +354,7 @@ def findData(condition):
 
 	return results
 
+#####################################################################################################
 #6th. Update the data
 def updateData(data,column):
 	conn = pymysql.connect(host='127.0.0.1', user='dagou', passwd='v4Qolwc1sMLIXmYO', db='dagou',charset="utf8")
@@ -393,6 +368,7 @@ def updateData(data,column):
 	cur.close()
 	conn.close()
 
+#####################################################################################################
 #7th. Process the data
 def updateGuangyuan():
 	condition = "city='广元' and start_date='2000-1-1'"
@@ -411,7 +387,7 @@ def updateGuangyuan():
 
 	updateData(data,"start_date")
 
-
+#####################################################################################################
 # Scrape Data
 def scrape(city):
 	bsObj = getBsObjData(city)
@@ -442,7 +418,8 @@ def scrapeTest(city):
 				print('{}:{}'.format(key,content))
 
 
-
+#####################################################################################################
+#main
 
 mianyang = {
 	'url':'http://caigou.my.gov.cn/ceinwz/WebInfo_List.aspx?newsid=2000&jsgc=&zfcg=0000000&tdjy=&cqjy=&PubDateSort=0&ShowPre=1&CbsZgys=0&zbfs=0&qxxx=0&showqxname=0&NewsShowPre=1&wsjj=0&showCgr=0&ShowOverDate=0&showdate=1&FromUrl=nourl',
