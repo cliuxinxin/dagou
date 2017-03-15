@@ -209,13 +209,26 @@ def parseGuangyuan(bsObj):
 		record = {
 			"name":item.contents[2].a.text,
 			"url":"http://www.gyggzy.gov.cn/ceinwz/"+item.contents[2].a.attrs['href'],
-			"city":'广元',
+			"city":'广元工程',
 			"start_date":'2000-1-1',
 			"end_date":''
 		}
 		records.append(record)
 	return records
 
+def parseGuangyuan2(bsObj):
+	itemList = bsObj.find('table',{'class':'myGVClass'}).find_all("tr",{'class':'myGVAltRow'})
+	records = []
+	for item in itemList:
+		record = {
+			"name":item.contents[2].a.text,
+			"url":"http://www.gyggzy.gov.cn/ceinwz/"+item.contents[2].a.attrs['href'],
+			"city":'广元采购',
+			"start_date":'2000-1-1',
+			"end_date":''
+		}
+		records.append(record)
+	return records
 
 def parseBazhong(bsObj):
 	itemList = bsObj.find('div',{'id':'listCon'}).find_all("li")
@@ -278,10 +291,25 @@ def parseYibin(bsObj):
 	records = []
 	for item in itemList:
 		record = {
-			"name":item.contents[0],
-			"url":item.contents[1],
+			"name":item.contents[2].a.text,
+			"url":"http://www.ybsggzyjyxxw.com/Jyweb/"+item.contents[2].a.attrs['href'],
 			"city":'宜宾',
-			"start_date":item.contents[2],
+			"start_date":item.contents[3].text,
+			"end_date":''
+		}
+		records.append(record)
+	return records
+
+
+def parseYibin2(bsObj):
+	itemList = bsObj.find_all("tr",{'class':{'js','os'}})
+	records = []
+	for item in itemList:
+		record = {
+			"name":item.contents[0].a.text,
+			"url":item.contents[0].a.attrs['href'],
+			"city":'宜宾',
+			"start_date":item.contents[1].text.replace("00:00:00","").strip(),
 			"end_date":''
 		}
 		records.append(record)
@@ -371,20 +399,37 @@ def updateData(data,column):
 #####################################################################################################
 #7th. Process the data
 def updateGuangyuan():
-	condition = "city='广元' and start_date='2000-1-1'"
+	condition = "city='广元工程' and start_date='2000-1-1'"
 
 	results = findData(condition)
-
 	data =[]
 
 	for result in results:
 		bsObj = getBsObj(result[2])
+		print(result[0])
+		print(result[2])
 		item ={
 			"id":result[0],
 			"start_date":bsObj.find("span",{"id":"lblWriteDate"}).text
 		}
 		data.append(item)
+	updateData(data,"start_date")
 
+def updateGuangyuan2():
+	condition = "city='广元采购' and start_date=''"
+
+	results = findData(condition)
+	data =[]
+
+	for result in results:
+		bsObj = getBsObj(result[2])
+		print(result[0])
+		print(result[2])
+		item ={
+			"id":result[0],
+			"start_date":bsObj.find("td",text=re.compile("[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}")).text[:10]
+		}
+		data.append(item)
 	updateData(data,"start_date")
 
 #####################################################################################################
@@ -522,17 +567,17 @@ cities = [
 		},
 
 		{
-			'name':'广安',
+			'name':'广元',
 			'url':'http://www.gyggzy.gov.cn/ceinwz/WebInfo_List.aspx?jsgc=0100000&PubDateSort=0&ShowPre=0&newsid=100&FromUrl=jsgc',
 			'web':0,
 			'method':'parseGuangyuan',
 		},
 
 		{
-			'name':'广安2',
+			'name':'广元2',
 			'url':'http://www.gyggzy.gov.cn/ceinwz/WebInfo_List.aspx?zfcg=0000000&PubDateSort=0&ShowPre=0&newsid=200&FromUrl=zfcg',
 			'web':0,
-			'method':'parseGuangyuan'
+			'method':'parseGuangyuan2'
 		},
 
 		{
@@ -576,40 +621,37 @@ cities = [
 			'url':'http://www.spprec.com/sczw/jyfwpt/005002/005002002/005002002002/',
 			'web':0,
 			'method':'parseSichuang',
-		}	
+		},
+
+		{
+			'name':'宜宾',
+			'url':'http://www.ybsggzyjyxxw.com/Jyweb/JYXTXiangMuXinXiList.aspx?type=%E5%BB%BA%E8%AE%BE%E5%B7%A5%E7%A8%8B&subType=130',
+			'web':1,
+			'method':'parseYibin',
+		},
+
+		{
+			'name':'宜宾2',
+			'url':'http://www.ybsggzyjyxxw.com/ZFCG/Default_ZFCG.aspx',
+			'web':1,
+			'method':'parseYibin2',
+		},
+
+		{
+			'name':'达州',
+			'url':'http://www.dzggzy.cn/dzsggzy/jyxx/025002/025002001/',
+			'web':1,
+			'method':'parseDazhou',
+		}
 ]
 
 testCities = [
-		{
-			'url':'http://caigou.my.gov.cn/ceinwz/WebInfo_List.aspx?newsid=2000&jsgc=&zfcg=0000000&tdjy=&cqjy=&PubDateSort=0&ShowPre=1&CbsZgys=0&zbfs=0&qxxx=0&showqxname=0&NewsShowPre=1&wsjj=0&showCgr=0&ShowOverDate=0&showdate=1&FromUrl=nourl',
-			'web': 0,
-			'method':'parseMianyang',
-			'name':'绵阳'
-		}
+
+	
 ]
 
-#web
-yibin = {
-	'url':'http://www.ybsggzyjyxxw.com/Jyweb/JYXTXiangMuXinXiList.aspx?type=%E5%BB%BA%E8%AE%BE%E5%B7%A5%E7%A8%8B&subType=130',
-	'web':0,
-	'method':'parseYibin',
-	'name':'宜宾'
-}
-
-yibin2 = {
-	'url':'http://www.ybsggzyjyxxw.com/ZFCG/Default_ZFCG.aspx',
-	'web':0,
-	'method':'parseShuiling',
-	'name':'宜宾2'
-}
-
 # 乱码
-dazhou = {
-			'url':'http://www.dzggzy.cn/dzsggzy/jyxx/025002/025002001/',
-			'web':0,
-			'method':'parseDazhou',
-			'name':'达州'
-		}
+ 		
 
 
 
@@ -617,15 +659,21 @@ def main():
 	for city in cities:
 		scrape(city)
 	updateGuangyuan()
+	updateGuangyuan2()
+
 
 def mainTest():
 	for city in testCities:
 		scrapeTest(city)
 
+def run():
+	isTest = len(testCities)
+	if isTest:
+		mainTest()
+	else:
+		main()
 
-# mainTest()
-main()
-
+run()
 
 
 
