@@ -347,6 +347,21 @@ def storeData(records):
 
 	return result
 
+def insertOrUpdateData(data):
+	conn = pymysql.connect(host='127.0.0.1', user='dagou', passwd='v4Qolwc1sMLIXmYO', db='dagou',charset="utf8")
+
+	cur = conn.cursor()
+	cur.execute("USE dagou")
+
+	cur.execute("INSERT INTO scraps (name,url,insert_numbers,time) VALUES (%(name)s,%(url)s,%(insert_numbers)s,%(time)s) ON DUPLICATE KEY UPDATE insert_numbers=VALUES(insert_numbers),time=VALUES(time)",data)
+	cur.connection.commit()
+	result = cur.rowcount
+
+	cur.close()
+	conn.close()
+
+	return result
+
 #4th. Repeat if neccsess
 
 #5th. Find the data
@@ -405,7 +420,15 @@ def scrape(city):
 		print("Title could not be found")
 	else:
 		records = eval(city['method'] + '(bsObj)')
-		print(storeData(records))
+		insert_numbers = storeData(records)
+		data = {
+			"name":city['name'],
+			"url":city['url'],
+			"insert_numbers":insert_numbers,
+			"time": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+		}
+		insertOrUpdateData(data)
+		print(city['name'])
 
 def scrapeTest(city):
 	bsObj = getBsObjData(city)
@@ -424,91 +447,107 @@ def scrapeTest(city):
 mianyang = {
 	'url':'http://caigou.my.gov.cn/ceinwz/WebInfo_List.aspx?newsid=2000&jsgc=&zfcg=0000000&tdjy=&cqjy=&PubDateSort=0&ShowPre=1&CbsZgys=0&zbfs=0&qxxx=0&showqxname=0&NewsShowPre=1&wsjj=0&showCgr=0&ShowOverDate=0&showdate=1&FromUrl=nourl',
 	'web': 0,
-	'method':'parseMianyang'
+	'method':'parseMianyang',
+	'name':'绵阳'
 }
 
 chengdu = {
 	'url':'http://www.cdggzy.com/app1/two/jyxx_zbggmore.jsp',
 	'web': 1,
-	'method':'parseChengdu'
+	'method':'parseChengdu',
+	'name':'成都'
 }
 
 mianyang2 = {
 	'url':'http://caigou.my.gov.cn/ceinwz/WebInfo_List.aspx?newsid=601&jsgc=&zfcg=0100000&tdjy=&cqjy=&PubDateSort=0&ShowPre=1&CbsZgys=0&zbfs=0&qxxx=0&showqxname=0&NewsShowPre=1&wsjj=0&showCgr=0&ShowOverDate=0&showdate=1&FromUrl=nourl',
 	'web': 0,
-	'method':'parseMianyang'
+	'method':'parseMianyang',
+	'name':'绵阳2'
 }
 
 mianyang3 = {
 	'url':'http://egpmall.my.gov.cn/Content/247_1',
 	'web': 0,
-	'method':'parseMianyang3'
+	'method':'parseMianyang3',
+	'name':'绵阳3'
 }
 
 ziyang = {
 	'url':'http://www.zyjyw.cn/Content/603_1',
 	'web': 0,
-	'method':'parseZiyang'
+	'method':'parseZiyang',
+	'name':'资阳'
 }
 
 yaan = {
 	'url':'http://ggzy.yazw.gov.cn:8007/JyWeb/XXGK/JYXYZFCGXXFBList?SubType=2&SubType2=2010&Type=%E9%87%87%E8%B4%AD%E4%BF%A1%E6%81%AF',
 	'web': 0,
-	'method':'parseYaan'
+	'method':'parseYaan',
+	'name':'雅安'
 }
 
 yaan2 = {
 	'url':'http://ggzy.yazw.gov.cn:8007/JyWeb/TradeInfo/JingJiaXinXiList?SubType=50000&SubType2=6010&Type=%E7%AB%9E%E4%BB%B7%E4%BF%A1%E6%81%AF',
 	'web': 0,
-	'method':'parseYaan2'
+	'method':'parseYaan2',
+	'name':'雅安2'
 }
 
 meishan = {
 	'url':'http://www.msggzy.org.cn/msweb/gcjs/003002/',
 	'web':0,
-	'method':'parseMeishan'
+	'method':'parseMeishan',
+	'name':'眉山'
 }
 
 meishan2 = {
 	'url':'http://www.msggzy.org.cn/msweb//zfcg/005003/MoreInfo.aspx?CategoryNum=005003',
 	'web':0,
-	'method':'parseMeishan2'
+	'method':'parseMeishan2',
+	'name':'眉山2'
 }
 
 deyang = {
 	'url':'http://v2.dyggzy.com/?id=678',
 	'web':1,
-	'method':'parseDeyang'
+	'method':'parseDeyang',
+	'name':'德阳'
 }
 
 shuiling = {
 	'url':'http://www.snjsjy.com/Content/Cloud/29_1_20_0',
 	'web':0,
-	'method':'parseShuiling'
+	'method':'parseShuiling',
+	'name':'遂宁'
 }
 
 shuiling2 = {
 	'url':'http://www.snjsjy.com/Content/Cloud/265,268_1_20_0',
 	'web':0,
-	'method':'parseShuiling'
+	'method':'parseShuiling',
+	'name':'遂宁2'
 }
 
 nanchong = {
 	'url':'http://www.scncggzy.com.cn/TPFront/front_zfcg/071002/?categoryno=0710&category=071002',
 	'web':0,
-	'method':'parseNanchong'
+	'method':'parseNanchong',
+	'name':'南充'
+
 }
 
 nanchong2 = {
 	'url':'http://www.scncggzy.com.cn/TPFront/front_gcjs/072001/?categoryno=0720&category=072001',
 	'web':0,
-	'method':'parseNanchong'
+	'method':'parseNanchong',
+	'name':'南充2'
 }
 
 guangyuan = {
 	'url':'http://www.gyggzy.gov.cn/ceinwz/WebInfo_List.aspx?jsgc=0100000&PubDateSort=0&ShowPre=0&newsid=100&FromUrl=jsgc',
 	'web':0,
-	'method':'parseGuangyuan'
+	'method':'parseGuangyuan',
+	'name':'广安'
 }
 
 # guangyuan2 = {
@@ -520,55 +559,64 @@ guangyuan = {
 bazhong = {
 	'url':'http://220.166.21.50:82/Category/More?id=643',
 	'web':1,
-	'method':'parseBazhong'
+	'method':'parseBazhong',
+	'name':'巴中'
 }
 
 bazhong2 = {
 	'url':'http://220.166.21.50:82/Category/More?id=646',
 	'web':1,
-	'method':'parseBazhong'
+	'method':'parseBazhong',
+	'name':'巴中2'
 }
 
 dazhou = {
 	'url':'http://www.dzggzy.cn/dzsggzy/jyxx/025002/025002001/',
 	'web':0,
-	'method':'parseDazhou'
+	'method':'parseDazhou',
+	'name':'达州'
 }
 
 luzhou = {
 	'url':'http://ggzy.luzhou.gov.cn/ceinwz/WebInfo_List.aspx?newsid=0&jsgc=0100000000&zfcg=&tdjy=&cqjy=&PubDateSort=0&ShowPre=0&CbsZgys=0&zbfs=0&qxxx=0&showqxname=0&NewsShowPre=1&wsjj=0&showCgr=0&ShowOverDate=0&showdate=1&FromUrl=jsgc',
 	'web':0,
-	'method':'parseLuzhou'
+	'method':'parseLuzhou',
+	'name':'泸州'
 }
 
 luzhou2 = {
 	'url':'http://cg.luzhou.gov.cn/ceinwz/WebInfo_List.aspx?newsid=5001,5006,5011,5016,5021,5026,5031,5036&jsgc=&zfcg=01000000&tdjy=&cqjy=&PubDateSort=0&ShowPre=0&CbsZgys=0&zbfs=0&qxxx=0&showqxname=1&NewsShowPre=1&wsjj=2&showCgr=0&ShowOverDate=0&showdate=1&FromUrl=zfcg',
 	'web':0,
-	'method':'parseLuzhou2'
+	'method':'parseLuzhou2',
+	'name':'泸州2'
 }
 
 yibin = {
 	'url':'http://www.ybsggzyjyxxw.com/Jyweb/JYXTXiangMuXinXiList.aspx?type=%E5%BB%BA%E8%AE%BE%E5%B7%A5%E7%A8%8B&subType=130',
 	'web':0,
-	'method':'parseYibin'
+	'method':'parseYibin',
+	'name':'宜宾'
 }
 
 yibin2 = {
 	'url':'http://www.ybsggzyjyxxw.com/ZFCG/Default_ZFCG.aspx',
 	'web':0,
-	'method':'parseShuiling'
+	'method':'parseShuiling',
+	'name':'宜宾2'
 }
 
 sichuang = {
 	'url':'http://www.spprec.com/sczw/jyfwpt/005001/005001001/',
 	'web':0,
-	'method':'parseSichuang'
+	'method':'parseSichuang',
+	'name':'四川'
 }
 
 sichuang2 = {
 	'url':'http://www.spprec.com/sczw/jyfwpt/005002/005002002/005002002002/',
 	'web':0,
-	'method':'parseSichuang'
+	'method':'parseSichuang',
+	'name':'四川2'
 }
 
 

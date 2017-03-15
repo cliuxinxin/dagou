@@ -10,8 +10,9 @@ class ScrapController extends Controller
     //
     public function index()
     {
-        $scraps = Scrap::all();
-        return view('index',compact('scraps'));
+        $items = Scrap::paginate(20);
+
+        return view('scrape',compact('items'));
     }
 
 }
