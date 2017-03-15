@@ -428,7 +428,7 @@ def scrape(city):
 			"time": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 		}
 		insertOrUpdateData(data)
-		print(city['name'])
+		print(city['method'])
 
 def scrapeTest(city):
 	bsObj = getBsObjData(city)
