@@ -275,7 +275,61 @@ def parseDazhou(bsObj):
 		records.append(record)
 	return records
 
+def parseLuzhou(bsObj):
+	itemList = bsObj.find('table',{'class':'myGVClass'}).find_all("tr",{'class':'myGVAltRow'})
+	records = []
+	for item in itemList:
+		record = {
+			"name":item.contents[2].a.text,
+			"url":"http://ggzy.luzhou.gov.cn/ceinwz/"+item.contents[2].a.attrs['href'],
+			"city":'泸州',
+			"start_date":item.contents[3].text.strip().replace("[正在进行]",""),
+			"end_date":''
+		}
+		records.append(record)
+	return records
 
+def parseLuzhou2(bsObj):
+	itemList = bsObj.find('table',{'class':'myGVClass'}).find_all("tr",{'class':'myGVAltRow'})
+	records = []
+	for item in itemList:
+		record = {
+			"name":item.contents[2].a.text,
+			"url":"http://cg.luzhou.gov.cn/ceinwz/WebInfo_List.aspx?newsid=5001,5006,5011,5016,5021,5026,5031,5036&jsgc=&zfcg=01000000&tdjy=&cqjy=&PubDateSort=0&ShowPre=0&CbsZgys=0&zbfs=0&qxxx=0&showqxname=1&NewsShowPre=1&wsjj=2&showCgr=0&ShowOverDate=0&showdate=1&FromUrl=zfcg",
+			"city":'泸州',
+			"start_date":time.strftime("%Y-", time.localtime())+item.contents[3].text.strip().replace("[正在进行]",""),
+			"end_date":''
+		}
+		records.append(record)
+	return records
+
+def parseYibin(bsObj):
+	itemList = bsObj.find_all("tr",{'class':{'js','os'}})
+	records = []
+	for item in itemList:
+		record = {
+			"name":item.contents[0],
+			"url":item.contents[1],
+			"city":'宜宾',
+			"start_date":item.contents[2],
+			"end_date":''
+		}
+		records.append(record)
+	return records
+
+def parseSichuang(bsObj):
+	itemList = bsObj.find_all("tr",{'height':'25'})
+	records = []
+	for item in itemList:
+		record = {
+			"name":item.contents[3].a.attrs['title'],
+			"url":"http://www.spprec.com" + item.contents[3].a.attrs['href'],
+			"city":'四川',
+			"start_date":item.contents[5].text.replace("[","").replace("]",""),
+			"end_date":''
+		}
+		records.append(record)
+	return records
 
 #3rd. Store datas
 
@@ -443,25 +497,37 @@ dazhou = {
 luzhou = {
 	'url':'http://ggzy.luzhou.gov.cn/ceinwz/WebInfo_List.aspx?newsid=0&jsgc=0100000000&zfcg=&tdjy=&cqjy=&PubDateSort=0&ShowPre=0&CbsZgys=0&zbfs=0&qxxx=0&showqxname=0&NewsShowPre=1&wsjj=0&showCgr=0&ShowOverDate=0&showdate=1&FromUrl=jsgc',
 	'web':0,
-	'method':'parseShuiling'
+	'method':'parseLuzhou'
 }
 
 luzhou2 = {
 	'url':'http://cg.luzhou.gov.cn/ceinwz/WebInfo_List.aspx?newsid=5001,5006,5011,5016,5021,5026,5031,5036&jsgc=&zfcg=01000000&tdjy=&cqjy=&PubDateSort=0&ShowPre=0&CbsZgys=0&zbfs=0&qxxx=0&showqxname=1&NewsShowPre=1&wsjj=2&showCgr=0&ShowOverDate=0&showdate=1&FromUrl=zfcg',
 	'web':0,
-	'method':'parseShuiling'
+	'method':'parseLuzhou2'
 }
 
 yibin = {
 	'url':'http://www.ybsggzyjyxxw.com/Jyweb/JYXTXiangMuXinXiList.aspx?type=%E5%BB%BA%E8%AE%BE%E5%B7%A5%E7%A8%8B&subType=130',
 	'web':0,
-	'method':'parseShuiling'
+	'method':'parseYibin'
 }
 
 yibin2 = {
 	'url':'http://www.ybsggzyjyxxw.com/ZFCG/Default_ZFCG.aspx',
 	'web':0,
 	'method':'parseShuiling'
+}
+
+sichuang = {
+	'url':'http://www.spprec.com/sczw/jyfwpt/005001/005001001/',
+	'web':0,
+	'method':'parseSichuang'
+}
+
+sichuang2 = {
+	'url':'http://www.spprec.com/sczw/jyfwpt/005002/005002002/005002002002/',
+	'web':0,
+	'method':'parseSichuang'
 }
 
 
@@ -483,8 +549,16 @@ scrape(nanchong2)
 scrape(guangyuan)
 scrape(bazhong)
 scrape(bazhong2)
+scrape(luzhou)
+scrape(luzhou2)
+scrape(sichuang)
+scrape(sichuang2)
+# #web
+# scrapeTest(yibin)
 # 乱码
 # scrapeTest(dazhou)
+
+
 
 
 
