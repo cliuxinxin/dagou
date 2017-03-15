@@ -7,7 +7,6 @@ import time
 import re
 
 
-
 #1st. Get html though domain
 
 def getBsObj(url):
@@ -549,11 +548,11 @@ scrape(luzhou)
 scrape(luzhou2)
 scrape(sichuang)
 scrape(sichuang2)
-#web
-# scrape(bazhong)
-# scrape(bazhong2)
-# scrape(deyang)
-# scrape(chengdu)
+web
+scrape(bazhong)
+scrape(bazhong2)
+scrape(deyang)
+scrape(chengdu)
 # #web
 # scrapeTest(yibin)
 # 乱码
