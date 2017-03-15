@@ -12,7 +12,7 @@
                         </tr>
                         @foreach($items as $item)
                             <tr>
-                                <td><a href={{$item->url}}>{{$item->name}}</a></td>
+                                <td><a href={{$item->url}}>{{str_limit($item->name, $limit = 150, $end = '...') }}</a></td>
                                 <td>{{$item->city}}</td>
                                 <td>{{$item->start_date}}</td>
                                 <td>{{$item->end_date}}</td>
