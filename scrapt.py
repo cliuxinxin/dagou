@@ -639,7 +639,6 @@ scrape(shuiling)
 scrape(shuiling2)
 scrape(nanchong)
 scrape(nanchong2)
-scrape(guangyuan)
 scrape(luzhou)
 scrape(luzhou2)
 scrape(sichuang)
@@ -654,6 +653,8 @@ scrape(chengdu)
 # 乱码
 # scrapeTest(dazhou)
 updateGuangyuan()
+scrape(guangyuan)
+
 
 
 

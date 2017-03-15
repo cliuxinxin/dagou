@@ -13,7 +13,7 @@
                 @foreach($items as $item)
                     <tr>
                         <td>{{$item->name}}</td>
-                        <td><a href="{{$item->url}}"></a>{{$item->url}}</td>
+                        <td  class="hideOverflow"><a href="{{$item->url}}">{{$item->url}}</a></td>
                         <td>{{$item->insert_numbers}}</td>
                         <td>{{$item->time}}</td>
                     </tr>
