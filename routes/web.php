@@ -16,3 +16,5 @@ Route::get('/', 'ItemsController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/hospital', 'ItemsController@hospital')->name('hospital');
