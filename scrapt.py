@@ -423,91 +423,91 @@ def scrapeTest(city):
 
 cities = [
 		{
-			'name':'绵阳'
+			'name':'绵阳',
 			'url':'http://caigou.my.gov.cn/ceinwz/WebInfo_List.aspx?newsid=2000&jsgc=&zfcg=0000000&tdjy=&cqjy=&PubDateSort=0&ShowPre=1&CbsZgys=0&zbfs=0&qxxx=0&showqxname=0&NewsShowPre=1&wsjj=0&showCgr=0&ShowOverDate=0&showdate=1&FromUrl=nourl',
 			'web': 0,
 			'method':'parseMianyang',
 		},
 
 		{
-			'name':'成都'
+			'name':'成都',
 			'url':'http://www.cdggzy.com/app1/two/jyxx_zbggmore.jsp',
 			'web': 1,
 			'method':'parseChengdu',
 		},
 
 		{
-			'name':'绵阳2'
+			'name':'绵阳2',
 			'url':'http://caigou.my.gov.cn/ceinwz/WebInfo_List.aspx?newsid=601&jsgc=&zfcg=0100000&tdjy=&cqjy=&PubDateSort=0&ShowPre=1&CbsZgys=0&zbfs=0&qxxx=0&showqxname=0&NewsShowPre=1&wsjj=0&showCgr=0&ShowOverDate=0&showdate=1&FromUrl=nourl',
 			'web': 0,
 			'method':'parseMianyang',
 		},
 
 		{
-			'name':'绵阳3'
+			'name':'绵阳3',
 			'url':'http://egpmall.my.gov.cn/Content/247_1',
 			'web': 0,
 			'method':'parseMianyang3',
 		},
 
 		{
-			'name':'资阳'
+			'name':'资阳',
 			'url':'http://www.zyjyw.cn/Content/603_1',
 			'web': 0,
 			'method':'parseZiyang',
 		},
 
 		{
-			'name':'雅安'
+			'name':'雅安',
 			'url':'http://ggzy.yazw.gov.cn:8007/JyWeb/XXGK/JYXYZFCGXXFBList?SubType=2&SubType2=2010&Type=%E9%87%87%E8%B4%AD%E4%BF%A1%E6%81%AF',
 			'web': 0,
 			'method':'parseYaan',
 		},
 
 		{
-			'name':'雅安2'
+			'name':'雅安2',
 			'url':'http://ggzy.yazw.gov.cn:8007/JyWeb/TradeInfo/JingJiaXinXiList?SubType=50000&SubType2=6010&Type=%E7%AB%9E%E4%BB%B7%E4%BF%A1%E6%81%AF',
 			'web': 0,
 			'method':'parseYaan2',
 		},
 
 		{
-			'name':'眉山'
+			'name':'眉山',
 			'url':'http://www.msggzy.org.cn/msweb/gcjs/003002/',
 			'web':0,
 			'method':'parseMeishan',
 		},
 
 		{
-			'name':'眉山2'
+			'name':'眉山2',
 			'url':'http://www.msggzy.org.cn/msweb//zfcg/005003/MoreInfo.aspx?CategoryNum=005003',
 			'web':0,
 			'method':'parseMeishan2',
 		},
 
 		{
-			'name':'德阳'
+			'name':'德阳',
 			'url':'http://v2.dyggzy.com/?id=678',
 			'web':1,
 			'method':'parseDeyang',
 		},
 
 		{
-			'name':'遂宁'
+			'name':'遂宁',
 			'url':'http://www.snjsjy.com/Content/Cloud/29_1_20_0',
 			'web':0,
 			'method':'parseShuiling',
 		},
 
 		{
-			'name':'遂宁2'
+			'name':'遂宁2',
 			'url':'http://www.snjsjy.com/Content/Cloud/265,268_1_20_0',
 			'web':0,
 			'method':'parseShuiling',
 		},
 
 		{
-			'name':'南充'
+			'name':'南充',
 			'url':'http://www.scncggzy.com.cn/TPFront/front_zfcg/071002/?categoryno=0710&category=071002',
 			'web':0,
 			'method':'parseNanchong',
@@ -515,35 +515,35 @@ cities = [
 		},
 
 		{
-			'name':'南充2'
+			'name':'南充2',
 			'url':'http://www.scncggzy.com.cn/TPFront/front_gcjs/072001/?categoryno=0720&category=072001',
 			'web':0,
 			'method':'parseNanchong',
 		},
 
 		{
-			'name':'广安'
+			'name':'广安',
 			'url':'http://www.gyggzy.gov.cn/ceinwz/WebInfo_List.aspx?jsgc=0100000&PubDateSort=0&ShowPre=0&newsid=100&FromUrl=jsgc',
 			'web':0,
 			'method':'parseGuangyuan',
 		},
 
 		{
-			'name':'广安2'
+			'name':'广安2',
 			'url':'http://www.gyggzy.gov.cn/ceinwz/WebInfo_List.aspx?zfcg=0000000&PubDateSort=0&ShowPre=0&newsid=200&FromUrl=zfcg',
 			'web':0,
 			'method':'parseGuangyuan'
 		},
 
 		{
-			'name':'巴中'
+			'name':'巴中',
 			'url':'http://220.166.21.50:82/Category/More?id=643',
 			'web':1,
 			'method':'parseBazhong',
 		},
 
 		{
-			'name':'巴中2'
+			'name':'巴中2',
 			'url':'http://220.166.21.50:82/Category/More?id=646',
 			'web':1,
 			'method':'parseBazhong',
@@ -551,28 +551,28 @@ cities = [
 
 
 		{
-			'name':'泸州'
+			'name':'泸州',
 			'url':'http://ggzy.luzhou.gov.cn/ceinwz/WebInfo_List.aspx?newsid=0&jsgc=0100000000&zfcg=&tdjy=&cqjy=&PubDateSort=0&ShowPre=0&CbsZgys=0&zbfs=0&qxxx=0&showqxname=0&NewsShowPre=1&wsjj=0&showCgr=0&ShowOverDate=0&showdate=1&FromUrl=jsgc',
 			'web':0,
 			'method':'parseLuzhou',
 		},
 
 		{
-			'name':'泸州2'
+			'name':'泸州2',
 			'url':'http://cg.luzhou.gov.cn/ceinwz/WebInfo_List.aspx?newsid=5001,5006,5011,5016,5021,5026,5031,5036&jsgc=&zfcg=01000000&tdjy=&cqjy=&PubDateSort=0&ShowPre=0&CbsZgys=0&zbfs=0&qxxx=0&showqxname=1&NewsShowPre=1&wsjj=2&showCgr=0&ShowOverDate=0&showdate=1&FromUrl=zfcg',
 			'web':0,
 			'method':'parseLuzhou2',
 		},
 
 		{
-			'name':'四川'
+			'name':'四川',
 			'url':'http://www.spprec.com/sczw/jyfwpt/005001/005001001/',
 			'web':0,
 			'method':'parseSichuang',
 		},
 
 		{
-			'name':'四川2'
+			'name':'四川2',
 			'url':'http://www.spprec.com/sczw/jyfwpt/005002/005002002/005002002002/',
 			'web':0,
 			'method':'parseSichuang',
