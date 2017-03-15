@@ -20,6 +20,7 @@
         ]) !!};
     </script>
 </head>
+@include('layouts.analyticstracking')
 <body>
     <div id="app">
         @include('layouts.nav')
