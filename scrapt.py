@@ -423,8 +423,6 @@ def updateGuangyuan2():
 
 	for result in results:
 		bsObj = getBsObj(result[2])
-		print(result[0])
-		print(result[2])
 		item ={
 			"id":result[0],
 			"start_date":bsObj.find("td",text=re.compile("[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}")).text[:10]
@@ -649,8 +647,6 @@ testCities = [
 
 	
 ]
-
-# 乱码
  		
 
 
