@@ -472,20 +472,6 @@ cities = [
 		},
 
 		{
-			'name':'眉山',
-			'url':'http://www.msggzy.org.cn/msweb/gcjs/003002/',
-			'web':0,
-			'method':'parseMeishan',
-		},
-
-		{
-			'name':'眉山2',
-			'url':'http://www.msggzy.org.cn/msweb//zfcg/005003/MoreInfo.aspx?CategoryNum=005003',
-			'web':0,
-			'method':'parseMeishan2',
-		},
-
-		{
 			'name':'德阳',
 			'url':'http://v2.dyggzy.com/?id=678',
 			'web':1,
@@ -576,7 +562,21 @@ cities = [
 			'url':'http://www.spprec.com/sczw/jyfwpt/005002/005002002/005002002002/',
 			'web':0,
 			'method':'parseSichuang',
-		}	
+		},
+		
+		{
+			'name':'眉山',
+			'url':'http://www.msggzy.org.cn/msweb/gcjs/003002/',
+			'web':0,
+			'method':'parseMeishan',
+		},
+
+		{
+			'name':'眉山2',
+			'url':'http://www.msggzy.org.cn/msweb//zfcg/005003/MoreInfo.aspx?CategoryNum=005003',
+			'web':0,
+			'method':'parseMeishan2',
+		},
 ]
 
 testCities = [
@@ -619,12 +619,14 @@ def main():
 	updateGuangyuan()
 
 def mainTest():
-	for city in testCities:
-		scrapeTest(city)
+	# for city in testCities:
+	# 	scrapeTest(city)
+	updateGuangyuan()
+	
 
 
-# mainTest()
-main()
+mainTest()
+# main()
 
 
 

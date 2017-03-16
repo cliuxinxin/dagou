@@ -20,3 +20,5 @@ Route::get('/home', 'HomeController@index');
 Route::get('/scrape', 'ScrapController@index')->name('scrape');
 
 Route::get('/hospital', 'ItemsController@hospital')->name('hospital');
+
+Route::get('/group', 'GroupsController@index')->name('group');
