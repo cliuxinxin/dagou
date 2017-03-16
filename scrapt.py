@@ -482,7 +482,7 @@ cities = [
 		{
 			'name':'绵阳2',
 			'url':'http://caigou.my.gov.cn/ceinwz/WebInfo_List.aspx?newsid=601&jsgc=&zfcg=0100000&tdjy=&cqjy=&PubDateSort=0&ShowPre=1&CbsZgys=0&zbfs=0&qxxx=0&showqxname=0&NewsShowPre=1&wsjj=0&showCgr=0&ShowOverDate=0&showdate=1&FromUrl=nourl',
-			'web': 0,
+			'web': 1,
 			'method':'parseMianyang',
 		},
 
