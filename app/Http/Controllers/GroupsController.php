@@ -13,4 +13,11 @@ class GroupsController extends Controller
 
         return view('group',compact('items'));
     }
+
+    public function store()
+    {
+        Group::create(request(['name','detail','url']));
+
+        return back();
+    }
 }

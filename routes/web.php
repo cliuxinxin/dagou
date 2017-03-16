@@ -17,8 +17,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+#Scrape
 Route::get('/scrape', 'ScrapController@index')->name('scrape');
 
+#Hospital
 Route::get('/hospital', 'ItemsController@hospital')->name('hospital');
 
+#Group
 Route::get('/group', 'GroupsController@index')->name('group');
+Route::post('/group', 'GroupsController@store')->name('groupStore');
+
+#GroupDetal
+Route::get('/group_detail/{group}', 'GroupDetailController@index')->name('groupDetail');
+Route::post('/group_detail/{group}', 'GroupDetailController@store')->name('groupDetailStore');

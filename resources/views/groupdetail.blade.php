@@ -5,38 +5,43 @@
         <div class="row">
             <table class="table table-striped">
                 <tr>
-                    <th>名称</th>
-                    <th>说明</th>
-                    <th>网址</th>
-                    <th>参加</th>
+                    <th>姓名</th>
+                    <th>电话</th>
+                    <th>细节</th>
+                    <th>地址</th>
                 </tr>
                 @foreach($items as $item)
                     <tr>
                         <td>{{$item->name}}</td>
-                        <td>{{str_limit($item->detail, $limit = 100, $end = '...') }}</td>
-                        <td><a href="{{$item->url}}">{{$item->url}}</a></td>
-                        <td><a class="btn btn-primary" href="{{ route('groupDetail',$item->id) }}">参与</a></td>
+                        <td>{{$item->phone }}</td>
+                        <td>{{$item->detail}}</td>
+                        <td>{{$item->address}}</td>
                     </tr>
                 @endforeach
             </table>
         </div>
         {{ $items->links() }}
         <div class="row col-md-6">
-            <form method="POST" action="{{ route('groupStore') }}">
+            <form method="POST" action="{{ route('groupDetailStore',Request::segment(2)) }}">
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <label for="name">名称</label>
+                    <label for="name">姓名</label>
                     <input type="text" class="form-control" name="name">
                 </div>
 
+                <div class="form-group">
+                    <label for="phone">电话</label>
+                    <input type="text" class="form-control" name="phone">
+                </div>
+
                 <div class="form-group" >
-                    <label for="detail">介绍</label>
+                    <label for="detail">说明</label>
                     <textarea rows="3" class="form-control" name="detail"></textarea>
                 </div>
 
-                <div class="form-group">
-                    <label for="url">网址</label>
-                    <input type="text" class="form-control" name="url">
+                <div class="form-group" >
+                    <label for="address">地址</label>
+                    <input type="text" class="form-control" name="address">
                 </div>
 
                 <button type="submit" class="btn btn-default">创建</button>
