@@ -13,7 +13,7 @@
             <table class="table table-striped">
                 <tr>
                     <th>名称</th>
-                    <th>说明</th>
+                    <th>备注</th>
                     <th>网址</th>
                     <th>参加</th>
                 </tr>
@@ -22,7 +22,7 @@
                         <td>{{$item->name}}</td>
                         <td>{{str_limit($item->detail, $limit = 100, $end = '...') }}</td>
                         <td><a href="{{$item->url}}">{{$item->url}}</a></td>
-                        <td><a class="btn btn-primary" href="{{ route('groupDetail',$item->id) }}">参与</a></td>
+                        <td><a class="btn btn-success" href="{{ route('groupDetail',$item->id) }}">参与</a></td>
                     </tr>
                 @endforeach
             </table>
@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="form-group" >
-                    <label for="detail">介绍</label>
+                    <label for="detail">备注</label>
                     <textarea rows="3" class="form-control" name="detail"></textarea>
                 </div>
 
@@ -47,7 +47,7 @@
                     <input type="text" class="form-control" name="url">
                 </div>
 
-                <button type="submit" class="btn btn-default">创建</button>
+                <button type="submit" class="btn btn-success">发起</button>
             </form>
         </div>
     </div>

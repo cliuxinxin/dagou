@@ -17,7 +17,7 @@
                 <tr>
                     <th>姓名</th>
                     <th>电话</th>
-                    <th>细节</th>
+                    <th>备注</th>
                     <th>地址</th>
                 </tr>
                 @foreach($items as $item)
@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="form-group" >
-                    <label for="detail">说明</label>
+                    <label for="detail">备注</label>
                     <textarea rows="3" class="form-control" name="detail"></textarea>
                 </div>
 
@@ -55,7 +55,7 @@
                     <input type="text" class="form-control" name="address">
                 </div>
 
-                <button type="submit" class="btn btn-default">创建</button>
+                <button type="submit" class="btn btn-success">参加</button>
             </form>
         </div>
     </div>
