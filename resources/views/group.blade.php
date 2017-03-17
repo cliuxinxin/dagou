@@ -2,6 +2,13 @@
 
 @section('content')
     <div class="container">
+        <row>
+            <h1>报名表</h1>
+            <blockquote>
+                在这里可以发起报名表，然后把报名表发给大家报名。
+            </blockquote>
+        </row>
+        <hr>
         <div class="row">
             <table class="table table-striped">
                 <tr>
@@ -21,6 +28,7 @@
             </table>
         </div>
         {{ $items->links() }}
+        <hr>
         <div class="row col-md-6">
             <form method="POST" action="{{ route('groupStore') }}">
                 {{ csrf_field() }}

@@ -10,11 +10,11 @@ class GroupDetailController extends Controller
 {
     public function index($group)
     {
-        $items = Group::find($group)->has('groupDetails')->orderBy('name')->paginate(20);
+        $group = Group::find($group);
 
-        dd(Group::find($group)->has('groupDetails'));
+        $items = $group->groupDetails()->Oldest()->paginate(20);
 
-        return view('groupdetail',compact('items'));
+        return view('groupdetail',compact('items','group'));
     }
 
 

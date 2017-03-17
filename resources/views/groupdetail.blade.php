@@ -2,6 +2,16 @@
 
 @section('content')
     <div class="container">
+        <row>
+            <h1>{{ $group->name }}</h1>
+            <blockquote>
+                {{ $group->detail }}
+            </blockquote>
+            @if($group->url)
+                <a href="{{$group->url}}">{{$group->url}}</a>
+                @endif
+        </row>
+        <hr>
         <div class="row">
             <table class="table table-striped">
                 <tr>
@@ -21,6 +31,7 @@
             </table>
         </div>
         {{ $items->links() }}
+        <hr>
         <div class="row col-md-6">
             <form method="POST" action="{{ route('groupDetailStore',Request::segment(2)) }}">
                 {{ csrf_field() }}
