@@ -8,10 +8,26 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                    <table class="table table-striped">
+                        <tr>
+                            <th>项目</th>
+                            <th>内容</th>
+                        </tr>
+                        <tr>
+                            <td>微信</td>
+                            <td>liuxinxin</td>
+                        </tr>
+                    </table>
+                    <row>
+                        <a href="" class="btn btn-success">修改</a>
+                    </row>
+                </div>
+
                 </div>
             </div>
+
         </div>
+
     </div>
 </div>
 @endsection

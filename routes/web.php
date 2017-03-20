@@ -30,3 +30,9 @@ Route::post('/group', 'GroupsController@store')->name('groupStore');
 #GroupDetal
 Route::get('/group_detail/{group}', 'GroupDetailController@index')->name('groupDetail');
 Route::post('/group_detail/{group}', 'GroupDetailController@store')->name('groupDetailStore');
+
+#Profile
+Route::get('/profiles/update', 'ProfilesController@update')->name('profilesUpdate');
+Route::post('/profiles', 'ProfilesController@store')->name('profileStore');
+
+
