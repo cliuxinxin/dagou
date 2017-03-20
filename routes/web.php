@@ -15,7 +15,7 @@ Route::get('/', 'ItemsController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home');
 
 #Scrape
 Route::get('/scrape', 'ScrapController@index')->name('scrape');
@@ -34,5 +34,12 @@ Route::post('/group_detail/{group}', 'GroupDetailController@store')->name('group
 #Profile
 Route::get('/profiles/update', 'ProfilesController@update')->name('profilesUpdate');
 Route::post('/profiles', 'ProfilesController@store')->name('profileStore');
+
+#Book
+Route::get('/books', 'BooksController@index')->name('books');
+Route::post('/books', 'BooksController@store')->name('bookStore');
+
+#Lending Record
+Route::post('/lending_record/{book}', 'LendingRecordsController@store')->name('lendingRecordStore');
 
 

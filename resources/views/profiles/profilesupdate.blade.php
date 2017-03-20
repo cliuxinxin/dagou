@@ -9,11 +9,11 @@
 
                     <div class="panel-body">
                         <div class="row col-md-6">
-                            <form method="POST" action="{{ route('profileStore') }}">
+                            <form method="POST" action="{{ route('profileStore')}}">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <label for="weixin">微信</label>
-                                    <input type="text" class="form-control" name="weixin">
+                                    <label for="weixin">微信号</label>
+                                    <input type="text" class="form-control" name="weixin" value="{{$weixin}}">
                                 </div>
 
                                 <button type="submit" class="btn btn-success">修改</button>

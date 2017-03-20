@@ -22,6 +22,7 @@
                 <li><a href="{{ route('hospital') }}">Hospital</a></li>
                 <li><a href="{{ route('scrape') }}">Scrape</a></li>
                 <li><a href="{{ route('group') }}">Group</a></li>
+                <li><a href="{{ route('books') }}">Books</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -38,6 +39,9 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li>
+                                <a href="{{ route('home') }}">Home</a>
+                            </li>
+                            <li>
                                 <a href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -48,6 +52,7 @@
                                     {{ csrf_field() }}
                                 </form>
                             </li>
+
                         </ul>
                     </li>
                 @endif

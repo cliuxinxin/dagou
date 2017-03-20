@@ -36,4 +36,27 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Profile');
     }
+
+    /**
+     * User has books
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function books()
+    {
+        return $this->hasMany('App\Book');
+
+    }
+
+
+    /**
+     * User has many lending records
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function lendingRecords()
+    {
+        return $this->hasMany('App\LendingRecord');
+
+    }
 }

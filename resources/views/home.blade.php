@@ -14,12 +14,12 @@
                             <th>内容</th>
                         </tr>
                         <tr>
-                            <td>微信</td>
-                            <td>liuxinxin</td>
+                            <td>微信号</td>
+                            <td>{{ $weixin }}</td>
                         </tr>
                     </table>
                     <row>
-                        <a href="" class="btn btn-success">修改</a>
+                        <a href="{{ route('profilesUpdate') }}" class="btn btn-success">修改</a>
                     </row>
                 </div>
 

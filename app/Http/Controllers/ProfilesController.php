@@ -10,7 +10,12 @@ class ProfilesController extends Controller
     //
     public function update()
     {
-        return view('profiles.profilesupdate');
+
+        $profile = Auth::user()->profiles->first();
+
+        $weixin = $profile?$profile->weixin:null;
+
+        return view('profiles.profilesupdate',compact('weixin'));
     }
 
 
@@ -27,7 +32,7 @@ class ProfilesController extends Controller
             request(['weixin'])
         );
 
-        return back();
+        return redirect()->route('home');
 
     }
 }
