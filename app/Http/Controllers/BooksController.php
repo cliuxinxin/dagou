@@ -27,7 +27,7 @@ class BooksController extends Controller
      */
     public function index()
     {
-        $items = Book::with('user')->paginate(20);
+        $items = Book::orderBy('created_at','desc')->paginate(20);
 
         return view('books.index',compact('items'));
     }
