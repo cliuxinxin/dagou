@@ -37,9 +37,12 @@ Route::post('/profiles', 'ProfilesController@store')->name('profileStore');
 
 #Book
 Route::get('/books', 'BooksController@index')->name('books');
+Route::get('/books/{user_id}', 'BooksController@userBooks')->name('userBooks');
+Route::get('/book/{book_id}', 'BooksController@bookDetail')->name('bookDetail');
 Route::post('/books', 'BooksController@store')->name('bookStore');
 
 #Lending Record
-Route::post('/lending_record/{book}', 'LendingRecordsController@store')->name('lendingRecordStore');
+Route::post('/lending_record', 'LendingRecordsController@store')->name('lendingRecordStore');
+Route::post('/lending_record/update', 'LendingRecordsController@update')->name('lendingRecordUpdate');
 
 
