@@ -9,7 +9,7 @@ class GroupsController extends Controller
 {
     public function index()
     {
-        $items = Group::orderBy('name')->paginate(20);
+        $items = Group::orderBy('created_at','desc')->paginate(20);
 
         return view('group',compact('items'));
     }
