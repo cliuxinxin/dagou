@@ -593,19 +593,7 @@ cities = [
 		},
 
 
-		{
-			'name':'泸州',
-			'url':'http://ggzy.luzhou.gov.cn/ceinwz/WebInfo_List.aspx?newsid=0&jsgc=0100000000&zfcg=&tdjy=&cqjy=&PubDateSort=0&ShowPre=0&CbsZgys=0&zbfs=0&qxxx=0&showqxname=0&NewsShowPre=1&wsjj=0&showCgr=0&ShowOverDate=0&showdate=1&FromUrl=jsgc',
-			'web':0,
-			'method':'parseLuzhou',
-		},
-
-		{
-			'name':'泸州2',
-			'url':'http://cg.luzhou.gov.cn/ceinwz/WebInfo_List.aspx?newsid=5001,5006,5011,5016,5021,5026,5031,5036&jsgc=&zfcg=01000000&tdjy=&cqjy=&PubDateSort=0&ShowPre=0&CbsZgys=0&zbfs=0&qxxx=0&showqxname=1&NewsShowPre=1&wsjj=2&showCgr=0&ShowOverDate=0&showdate=1&FromUrl=zfcg',
-			'web':0,
-			'method':'parseLuzhou2',
-		},
+		
 
 		{
 			'name':'四川',
@@ -640,6 +628,20 @@ cities = [
 			'url':'http://www.dzggzy.cn/dzsggzy/jyxx/025002/025002001/',
 			'web':1,
 			'method':'parseDazhou',
+		},
+
+		{
+			'name':'泸州',
+			'url':'http://ggzy.luzhou.gov.cn/ceinwz/WebInfo_List.aspx?newsid=0&jsgc=0100000000&zfcg=&tdjy=&cqjy=&PubDateSort=0&ShowPre=0&CbsZgys=0&zbfs=0&qxxx=0&showqxname=0&NewsShowPre=1&wsjj=0&showCgr=0&ShowOverDate=0&showdate=1&FromUrl=jsgc',
+			'web':0,
+			'method':'parseLuzhou',
+		},
+
+		{
+			'name':'泸州2',
+			'url':'http://cg.luzhou.gov.cn/ceinwz/WebInfo_List.aspx?newsid=5001,5006,5011,5016,5021,5026,5031,5036&jsgc=&zfcg=01000000&tdjy=&cqjy=&PubDateSort=0&ShowPre=0&CbsZgys=0&zbfs=0&qxxx=0&showqxname=1&NewsShowPre=1&wsjj=2&showCgr=0&ShowOverDate=0&showdate=1&FromUrl=zfcg',
+			'web':0,
+			'method':'parseLuzhou2',
 		}
 ]
 
