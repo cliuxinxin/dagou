@@ -21,7 +21,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{ route('hospital') }}">Hospital</a></li>
                 <li><a href="{{ route('scrape') }}">Scrape</a></li>
-                <li><a href="{{ route('group') }}">Group</a></li>
+                {{--<li><a href="{{ route('group') }}">Group</a></li>--}}
                 <li><a href="{{ route('books') }}">Books</a></li>
             </ul>
 
