@@ -26,4 +26,11 @@ class ItemsController extends Controller
 
         return view('index',compact('items'));
     }
+
+    public function apiIndex()
+    {
+        $items = Item::orderBy('start_date', 'desc')->paginate(20);
+
+        return $items;
+    }
 }
