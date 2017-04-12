@@ -19,3 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //Items
 Route::get('items', 'ItemsController@apiIndex');
+
+//Books
+Route::get('books', 'BooksController@apiIndex');

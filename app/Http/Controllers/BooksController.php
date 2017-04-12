@@ -33,6 +33,18 @@ class BooksController extends Controller
     }
 
     /**
+     * Show all the books through api
+     * 
+     * @return mixed
+     */
+    public function apiIndex()
+    {
+        $items = Book::orderBy('created_at','desc')->paginate(20);
+
+        return items;
+    }
+
+    /**
      * User create a book
      */
     public function store()
